@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/shared/styled_text.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,15 +12,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Your Party'),
-          centerTitle: true,
+      appBar: AppBar(
+        title: const StyledTitle('Your Party'),
+        centerTitle: true,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const StyledTitle('Your Party'),
+            const StyledHeadline('Your Party'),
+            const StyledText('Your Party'),
+            FilledButton(
+                onPressed: () {}, child: const Text('Create New Character')),
+          ],
         ),
-        body: Container(
-          padding: const EdgeInsets.all(16),
-          child: const Center(
-            child: Text('Home'),
-          ),
-        ));
+      ),
+    );
   }
 }
