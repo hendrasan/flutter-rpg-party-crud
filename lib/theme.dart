@@ -12,37 +12,47 @@ class AppColors {
 }
 
 ThemeData primaryTheme = ThemeData(
-    // seed color
-    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+  // seed color
+  colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
 
-    // scaffold color
-    scaffoldBackgroundColor: AppColors.secondaryAccent,
-    appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.secondaryColor,
-      foregroundColor: AppColors.textColor,
-      surfaceTintColor: Colors.transparent,
-      titleTextStyle: TextStyle(
-        color: AppColors.titleColor,
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
-      centerTitle: true,
+  // scaffold color
+  scaffoldBackgroundColor: AppColors.secondaryAccent,
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColors.secondaryColor,
+    foregroundColor: AppColors.textColor,
+    surfaceTintColor: Colors.transparent,
+    titleTextStyle: TextStyle(
+      color: AppColors.titleColor,
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
     ),
-    textTheme: TextTheme(
-      bodyMedium: TextStyle(
-        color: AppColors.textColor,
-        fontSize: 16,
-      ),
-      headlineMedium: TextStyle(
-        color: AppColors.titleColor,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        letterSpacing: 0.5,
-      ),
-      titleMedium: TextStyle(
-        color: AppColors.titleColor,
-        fontWeight: FontWeight.bold,
-        fontSize: 20,
-        letterSpacing: 1,
-      ),
-    ));
+    centerTitle: true,
+  ),
+  textTheme: TextTheme(
+    bodyMedium: TextStyle(
+      color: AppColors.textColor,
+      fontSize: 16,
+    ),
+    headlineMedium: TextStyle(
+      color: AppColors.titleColor,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      letterSpacing: 0.5,
+    ),
+    titleMedium: TextStyle(
+      color: AppColors.titleColor,
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      letterSpacing: 1,
+    ),
+  ),
+  cardTheme: CardTheme(
+    color: AppColors.secondaryColor.withOpacity(0.6),
+    surfaceTintColor: Colors.transparent,
+    shape: const RoundedRectangleBorder(),
+    // shadowColor: Colors.transparent,
+    shadowColor: AppColors.secondaryAccent,
+    elevation: 4,
+    margin: const EdgeInsets.only(bottom: 16),
+  ),
+);
