@@ -55,4 +55,15 @@ ThemeData primaryTheme = ThemeData(
     elevation: 4,
     margin: const EdgeInsets.only(bottom: 16),
   ),
+
+  // inputs decoration
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: AppColors.secondaryColor.withOpacity(0.5),
+    border: InputBorder.none,
+    labelStyle: TextStyle(
+      color: AppColors.primaryAccent,
+    ),
+    prefixIconColor: AppColors.textColor,
+  ),
 );
