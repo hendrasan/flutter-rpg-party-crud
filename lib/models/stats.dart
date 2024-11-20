@@ -1,3 +1,13 @@
+class Stat {
+  Stat({
+    required this.title,
+    required this.value,
+  });
+
+  final String title;
+  final String value;
+}
+
 mixin Stats {
   int _points = 10;
   int _health = 10;
@@ -22,12 +32,12 @@ mixin Stats {
         'speed': _speed,
       };
 
-  List<Map<String, String>> get statsAsFormattedList => [
-        {'stat': 'Health', 'value': _health.toString()},
-        {'stat': 'Attack', 'value': _attack.toString()},
-        {'stat': 'Defense', 'value': _defense.toString()},
-        {'stat': 'Magic', 'value': _magic.toString()},
-        {'stat': 'Speed', 'value': _speed.toString()},
+  List<Stat> get statsAsFormattedList => [
+        Stat(title: 'health', value: _health.toString()),
+        Stat(title: 'attack', value: _attack.toString()),
+        Stat(title: 'defense', value: _defense.toString()),
+        Stat(title: 'magic', value: _magic.toString()),
+        Stat(title: 'speed', value: _speed.toString()),
       ];
 
   // methods
@@ -53,6 +63,8 @@ mixin Stats {
         default:
           break;
       }
+
+      _points--;
     }
   }
 
