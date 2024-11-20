@@ -83,93 +83,96 @@ class _CreateState extends State<Create> {
     return Scaffold(
       appBar: AppBar(
         title: const StyledTitle('Character Creation'),
-        centerTitle: true,
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         child: SingleChildScrollView(
-          child: Column(children: [
-            Center(
-              child: Icon(
-                Icons.person_add,
-                color: AppColors.primaryColor,
-                size: 36,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: Icon(
+                  Icons.person_add,
+                  color: AppColors.primaryColor,
+                  size: 36,
+                ),
               ),
-            ),
-            const Center(
-              child: StyledHeadline('Welcome, new player'),
-            ),
-            const Center(
-              child: StyledText('Create a name and slogan for your character.'),
-            ),
-            const SizedBox(height: 30),
+              const Center(
+                child: StyledHeadline('Welcome, new player'),
+              ),
+              const Center(
+                child:
+                    StyledText('Create a name and slogan for your character.'),
+              ),
+              const SizedBox(height: 30),
 
-            // inputs
-            TextField(
-              controller: _nameController,
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.bodyMedium,
+              // inputs
+              TextField(
+                controller: _nameController,
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.bodyMedium,
+                ),
+                cursorColor: AppColors.textColor,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  label: StyledText('Character Name'),
+                ),
               ),
-              cursorColor: AppColors.textColor,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.person),
-                label: StyledText('Character Name'),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _sloganController,
+                style: GoogleFonts.kanit(
+                  textStyle: Theme.of(context).textTheme.bodyMedium,
+                ),
+                cursorColor: AppColors.textColor,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.chat_rounded),
+                  label: StyledText('Character Slogan'),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _sloganController,
-              style: GoogleFonts.kanit(
-                textStyle: Theme.of(context).textTheme.bodyMedium,
-              ),
-              cursorColor: AppColors.textColor,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.chat_rounded),
-                label: StyledText('Character Slogan'),
-              ),
-            ),
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            // select vocation
-            const Center(
-              child: StyledHeadline('Choose a vocation.'),
-            ),
-            const Center(
-              child: StyledText(
-                  'This will determine your character\'s abilities.'),
-            ),
-
-            const SizedBox(height: 30),
-
-            VocationCard(
-              vocation: Vocation.protector,
-              onTap: updateVocation,
-              selected: selectedVocation == Vocation.protector,
-            ),
-            VocationCard(
-              onTap: updateVocation,
-              vocation: Vocation.ronin,
-              selected: selectedVocation == Vocation.ronin,
-            ),
-            VocationCard(
-              onTap: updateVocation,
-              vocation: Vocation.medic,
-              selected: selectedVocation == Vocation.medic,
-            ),
-            VocationCard(
-              onTap: updateVocation,
-              vocation: Vocation.highlander,
-              selected: selectedVocation == Vocation.highlander,
-            ),
-
-            const SizedBox(height: 30),
-            Center(
-              child: StyledButton(
-                onPressed: handleSubmit,
-                child: const StyledHeadline('Create Character'),
+              // select vocation
+              const Center(
+                child: StyledHeadline('Choose a vocation.'),
               ),
-            )
-          ]),
+              const Center(
+                child: StyledText(
+                    'This will determine your character\'s abilities.'),
+              ),
+
+              const SizedBox(height: 30),
+
+              VocationCard(
+                vocation: Vocation.protector,
+                onTap: updateVocation,
+                selected: selectedVocation == Vocation.protector,
+              ),
+              VocationCard(
+                onTap: updateVocation,
+                vocation: Vocation.ronin,
+                selected: selectedVocation == Vocation.ronin,
+              ),
+              VocationCard(
+                onTap: updateVocation,
+                vocation: Vocation.medic,
+                selected: selectedVocation == Vocation.medic,
+              ),
+              VocationCard(
+                onTap: updateVocation,
+                vocation: Vocation.highlander,
+                selected: selectedVocation == Vocation.highlander,
+              ),
+
+              const SizedBox(height: 30),
+              Center(
+                child: StyledButton(
+                  onPressed: handleSubmit,
+                  child: const StyledHeadline('Create Character'),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
