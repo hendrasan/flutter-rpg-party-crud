@@ -15,12 +15,17 @@ class SkillList extends StatefulWidget {
 
 class _SkillListState extends State<SkillList> {
   late List<Skill> availableSkills;
+  late Skill selectedSkill;
 
   @override
   void initState() {
     availableSkills = allSkills
         .where((skill) => skill.vocation == widget.character.vocation)
         .toList();
+
+    selectedSkill = widget.character.skills.isEmpty
+        ? availableSkills.first
+        : widget.character.skills.first;
 
     super.initState();
   }
@@ -62,16 +67,32 @@ class _SkillListState extends State<SkillList> {
                     flex: 1,
                     child: Container(
                       margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(2),
-                      child: Image.asset(
-                        'assets/images/skills/${skill.image}',
-                        // fit: BoxFit.cover,
+                      padding: const EdgeInsets.only(top: 5, left: 5),
+                      color: skill == selectedSkill
+                          ? AppColors.primaryAccent
+                          : Colors.transparent,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedSkill = skill;
+                            widget.character.updateSkill(skill);
+                          });
+                        },
+                        child: Image.asset(
+                          'assets/images/skills/${skill.image}',
+                          // fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 20)
+              const SizedBox(height: 20),
+              StyledHeadline(selectedSkill.name),
+              StyledText(
+                selectedSkill.description,
+                textAlign: TextAlign.center,
+              ),
             ],
           )),
     );

@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StyledText extends StatelessWidget {
-  const StyledText(this.text, {super.key});
+  const StyledText(
+    this.text, {
+    super.key,
+    this.textAlign = TextAlign.left,
+  });
 
   final String text;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +18,7 @@ class StyledText extends StatelessWidget {
       style: GoogleFonts.kanit(
         textStyle: Theme.of(context).textTheme.bodyMedium,
       ),
+      textAlign: textAlign,
     );
   }
 }

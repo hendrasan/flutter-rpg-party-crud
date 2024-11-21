@@ -29,7 +29,7 @@ class Character with Stats {
 
   void updateSkill(Skill skill) {
     // only allow 1 skill
-    // skills.clear();
+    skills.clear();
     skills.add(skill);
   }
 }
