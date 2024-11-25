@@ -11,38 +11,50 @@ class CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Row(
-          children: [
-            // Text(character),
-            Image.asset(
-              'assets/images/vocations/${character.vocation.image}',
-              width: 100,
-            ),
-            const SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                StyledHeadline(character.name),
-                StyledText(character.vocation.title),
-              ],
-            ),
-            const Expanded(
-              child: SizedBox(),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (ctx) => Profile(character: character)),
-                );
-              },
-              icon: Icon(Icons.arrow_forward, color: AppColors.textColor),
-            )
-          ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (ctx) => Profile(character: character)),
+        );
+      },
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: Row(
+            children: [
+              // Text(character),
+              Hero(
+                tag: character.id.toString(),
+                child: Image.asset(
+                  'assets/images/vocations/${character.vocation.image}',
+                  width: 100,
+                ),
+              ),
+              const SizedBox(width: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      StyledHeadline(character.name),
+                      if (character.isFavorite)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Icon(Icons.favorite,
+                              color: AppColors.primaryAccent),
+                        ),
+                    ],
+                  ),
+                  StyledText(character.vocation.title),
+                ],
+              ),
+              const Expanded(
+                child: SizedBox(),
+              ),
+              Icon(Icons.arrow_forward, color: AppColors.textColor),
+            ],
+          ),
         ),
       ),
     );

@@ -6,10 +6,12 @@ class StyledText extends StatelessWidget {
     this.text, {
     super.key,
     this.textAlign = TextAlign.left,
+    this.fontWeight = FontWeight.normal,
   });
 
   final String text;
   final TextAlign textAlign;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class StyledText extends StatelessWidget {
       text,
       style: GoogleFonts.kanit(
         textStyle: Theme.of(context).textTheme.bodyMedium,
+        fontWeight: fontWeight,
       ),
       textAlign: textAlign,
     );

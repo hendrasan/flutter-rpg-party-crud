@@ -15,6 +15,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  void initState() {
+    Provider.of<CharacterStore>(context, listen: false).fetchCharactersOnce();
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +37,43 @@ class _HomeState extends State<Home> {
                 return ListView.builder(
                     itemCount: value.characters.length,
                     itemBuilder: (_, index) {
-                      return CharacterCard(value.characters[index]);
+                      return Dismissible(
+                        key: ValueKey(value.characters[index].id),
+                        confirmDismiss: (direction) {
+                          return showDialog(
+                              context: context,
+                              builder: (ctx) {
+                                return AlertDialog(
+                                  title: const StyledHeadline('Are you sure?'),
+                                  content: const StyledText(
+                                      'Do you want to remove this character?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(ctx).pop(false);
+                                      },
+                                      child: const StyledText('No'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Provider.of<CharacterStore>(context,
+                                                listen: false)
+                                            .removeCharacter(
+                                                value.characters[index]);
+                                        Navigator.of(ctx).pop(true);
+                                      },
+                                      child: const StyledText('Yes'),
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        // onDismissed: (direction) {
+                        //   Provider.of<CharacterStore>(context, listen: false)
+                        //       .removeCharacter(value.characters[index].id);
+                        // },
+                        child: CharacterCard(value.characters[index]),
+                      );
                     });
               }),
             ),

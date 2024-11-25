@@ -1,39 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
+import 'package:flutter_rpg/services/firestore_service.dart';
 
 class CharacterStore extends ChangeNotifier {
-  final List<Character> _characters = [
-    Character(
-      id: '1',
-      name: 'Luca',
-      slogan: 'I am the best!',
-      vocation: Vocation.protector,
-    ),
-    Character(
-      id: '2',
-      name: 'Luna',
-      slogan: 'Oh holy light, heal us!',
-      vocation: Vocation.medic,
-    ),
-    Character(
-      id: '3',
-      name: 'Shin',
-      slogan: 'My blade will sunder the darkness!',
-      vocation: Vocation.ronin,
-    ),
-    Character(
-      id: '4',
-      name: 'Kai',
-      slogan: 'I\'ve been waiting for this!',
-      vocation: Vocation.highlander,
-    ),
-  ];
+  final List<Character> _characters = [];
 
   get characters => _characters;
 
+  // add character
   void addCharacter(Character character) {
+    FirestoreService.addCharacter(character);
+
     _characters.add(character);
+    notifyListeners();
+  }
+
+  // save character
+  Future<void> saveCharacter(Character character) async {
+    await FirestoreService.updateCharacter(character);
+
+    return;
+  }
+
+  // delete character
+  void removeCharacter(Character character) async {
+    await FirestoreService.deleteCharacter(character);
+
+    _characters.remove(character);
+    notifyListeners();
+  }
+
+  // initial fetch characters
+  void fetchCharactersOnce() async {
+    if (_characters.isEmpty) {
+      final snapshot = await FirestoreService.getCharactersOnce();
+
+      _characters.addAll(snapshot.docs.map((doc) => doc.data()).toList());
+
+      // for (var doc in snapshot.docs) {
+      //   _characters.add(doc.data());
+      // }
+
+      notifyListeners();
+    }
+  }
+
+  // toggle favorite
+  void toggleFavorite(Character character) async {
+    await FirestoreService.toggleFavorite(character);
+
+    character.toggleFavorite();
     notifyListeners();
   }
 }
