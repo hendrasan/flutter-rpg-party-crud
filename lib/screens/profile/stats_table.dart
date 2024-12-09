@@ -47,13 +47,19 @@ class _StatsTableState extends State<StatsTable> {
         ),
         // stats table
         Table(
+          columnWidths: const {
+            0: FlexColumnWidth(2),
+            1: FlexColumnWidth(2),
+            2: FlexColumnWidth(1),
+            3: FlexColumnWidth(1),
+          },
           children: widget.character.statsAsFormattedList.map((stat) {
             return TableRow(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.primaryColor,
-                    AppColors.primaryAccent,
+                    AppColors.secondaryColor,
+                    AppColors.secondaryAccent,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

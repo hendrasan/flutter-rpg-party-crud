@@ -47,6 +47,7 @@ class CharacterCard extends StatelessWidget {
                     ],
                   ),
                   StyledText(character.vocation.title),
+                  StyledText('${character.points} SP available'),
                 ],
               ),
               const Expanded(

@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
                             children: [
                               StyledHeadline(character.name),
                               StyledText(character.vocation.description),
-                              StyledText("\"${character.slogan}\""),
+                              // StyledText("\"${character.slogan}\""),
                             ],
                           ),
                         ),

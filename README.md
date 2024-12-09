@@ -1,10 +1,15 @@
 # flutter_rpg
 
-A new Flutter project.
+An RPG party of heroes management.
 
-## Getting Started
+## About
 
-This project is a starting point for a Flutter application.
+I'm using this project to learn Flutter development.
+
+This project is CRUD application for heroes data management. So far, it uses Google Fonts, UUID, Provider (for state management) and Firestore (for data persistence).
+
+
+## Flutter Things
 
 A few resources to get you started if this is your first Flutter project:
 
